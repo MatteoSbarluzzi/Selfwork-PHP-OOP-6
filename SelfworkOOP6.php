@@ -21,13 +21,13 @@ class Post {
     }
 }
 
-// Creazione di istanze di Post
+
 $post1 = new Post("Ultime Notizie", new Attualita(), ["politica", "economia"]);
 $post2 = new Post("Finale di Champions League", new Sport(), ["calcio", "Champions League"]);
 $post3 = new Post("Nuovi Gossip", new Gossip(), ["celebrità", "rumors"]);
 $post4 = new Post("Eventi Storici", new Storia(), ["antichità", "guerre"]);
 
-// Visualizzazione dettagli
+
 $post1->getPostDetails();
 $post2->getPostDetails();
 $post3->getPostDetails();
