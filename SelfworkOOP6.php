@@ -2,30 +2,47 @@
 
 require_once 'class.php';
 
-class Post {
-    private $titolo;
-    private $categoria;
-    private $tag;
+class Categoria {
+    private $nome;
 
-    public function __construct($titolo, Category $categoria, array $tag) {
+    public function __construct($nome) {
+        $this->nome = $nome;
+    }
+
+    public function getNome() {
+        return $this->nome;
+    }
+}
+
+class Post {
+    public $titolo;
+    public $categoria;
+    public $tag;
+
+    public function __construct($titolo, Categoria $categoria, array $tag) {
         $this->titolo = $titolo;
         $this->categoria = $categoria;
         $this->tag = $tag;
     }
 
     public function getPostDetails() {
-        echo "Titolo: " . $this->titolo . "<br>";
-        echo "Categoria: ";
-        $this->categoria->getMyCategory();
-        echo "<br>Tag: " . implode(", ", $this->tag) . "<br><br>";
+        echo "Titolo: " . $this->titolo . "\n";
+        echo "Categoria: " . $this->categoria->getNome() . "\n";
+        echo "Tag: " . implode(", ", $this->tag) . "\n\n";
     }
 }
 
 
-$post1 = new Post("Ultime Notizie", new Attualita(), ["politica", "economia"]);
-$post2 = new Post("Finale di Champions League", new Sport(), ["calcio", "Champions League"]);
-$post3 = new Post("Nuovi Gossip", new Gossip(), ["celebrità", "rumors"]);
-$post4 = new Post("Eventi Storici", new Storia(), ["antichità", "guerre"]);
+$attualita = new Categoria("Attualità");
+$sport = new Categoria("Sport");
+$gossip = new Categoria("Gossip");
+$storia = new Categoria("Storia");
+
+
+$post1 = new Post("Ultime Notizie", $attualita, ["politica", "economia"]);
+$post2 = new Post("Finale di Champions League", $sport, ["calcio", "Champions League"]);
+$post3 = new Post("Nuovi Gossip", $gossip, ["celebrità", "rumors"]);
+$post4 = new Post("Eventi Storici", $storia, ["antichità", "guerre"]);
 
 
 $post1->getPostDetails();
